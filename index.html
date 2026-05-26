@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your daily calorie intake with this beautiful, modern calorie tracker. Set goals, log meals, and monitor your nutrition progress.">
+    <title>CalorieFlow — Smart Calorie Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header" id="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M14 2C13 2 11 4 11 7C11 9 12 11 14 11C16 11 17 9 17 7C17 4 15 2 14 2Z" fill="url(#flame1)"/>
+                            <path d="M14 6C13.2 6 12 7.5 12 9.5C12 11 13 12.5 14 12.5C15 12.5 16 11 16 9.5C16 7.5 14.8 6 14 6Z" fill="url(#flame2)"/>
+                            <circle cx="14" cy="19" r="7" stroke="url(#ring)" stroke-width="2" fill="none"/>
+                            <path d="M14 14V17M14 21V24M10 19H7M21 19H18" stroke="url(#ring)" stroke-width="1.5" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="flame1" x1="14" y1="2" x2="14" y2="11">
+                                    <stop stop-color="#FF6B35"/>
+                                    <stop offset="1" stop-color="#F7C948"/>
+                                </linearGradient>
+                                <linearGradient id="flame2" x1="14" y1="6" x2="14" y2="12.5">
+                                    <stop stop-color="#F7C948"/>
+                                    <stop offset="1" stop-color="#FFEB3B"/>
+                                </linearGradient>
+                                <linearGradient id="ring" x1="7" y1="12" x2="21" y2="26">
+                                    <stop stop-color="#FF6B35"/>
+                                    <stop offset="1" stop-color="#F7C948"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1 class="logo-text">Calorie<span>Flow</span></h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-icon" id="btn-settings" aria-label="Settings" title="Settings">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Date Navigation -->
+            <section class="date-nav" id="date-nav">
+                <button class="date-arrow" id="btn-prev-day" aria-label="Previous day">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <div class="date-display" id="date-display">
+                    <span class="date-label" id="date-label">Today</span>
+                    <span class="date-full" id="date-full">May 26, 2026</span>
+                </div>
+                <button class="date-arrow" id="btn-next-day" aria-label="Next day">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+            </section>
+
+            <!-- Dashboard Cards -->
+            <section class="dashboard" id="dashboard">
+                <!-- Calorie Ring Card -->
+                <div class="card card-ring" id="card-ring">
+                    <div class="ring-container">
+                        <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
+                            <defs>
+                                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FF6B35"/>
+                                    <stop offset="50%" stop-color="#F7C948"/>
+                                    <stop offset="100%" stop-color="#4ADE80"/>
+                                </linearGradient>
+                                <linearGradient id="overGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#EF4444"/>
+                                    <stop offset="100%" stop-color="#F87171"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="ring-bg" cx="90" cy="90" r="78" fill="none" stroke-width="10"/>
+                            <circle class="ring-progress" id="ring-progress" cx="90" cy="90" r="78" fill="none" stroke-width="10" stroke-linecap="round"
+                                    stroke-dasharray="490" stroke-dashoffset="490" transform="rotate(-90 90 90)"/>
+                        </svg>
+                        <div class="ring-center">
+                            <span class="ring-calories" id="ring-calories">0</span>
+                            <span class="ring-label">calories</span>
+                        </div>
+                    </div>
+                    <div class="ring-footer">
+                        <div class="ring-stat">
+                            <span class="stat-value" id="stat-remaining">2000</span>
+                            <span class="stat-label">Remaining</span>
+                        </div>
+                        <div class="ring-divider"></div>
+                        <div class="ring-stat">
+                            <span class="stat-value" id="stat-goal">2000</span>
+                            <span class="stat-label">Goal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Macro Cards -->
+                <div class="macro-cards">
+                    <div class="card card-macro" id="card-breakfast">
+                        <div class="macro-icon breakfast-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8h1a4 4 0 010 8h-1"/>
+                                <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                                <line x1="6" y1="1" x2="6" y2="4"/>
+                                <line x1="10" y1="1" x2="10" y2="4"/>
+                                <line x1="14" y1="1" x2="14" y2="4"/>
+                            </svg>
+                        </div>
+                        <div class="macro-info">
+                            <span class="macro-label">Breakfast</span>
+                            <span class="macro-value" id="breakfast-cal">0 cal</span>
+                        </div>
+                        <div class="macro-bar">
+                            <div class="macro-bar-fill breakfast-fill" id="breakfast-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="card card-macro" id="card-lunch">
+                        <div class="macro-icon lunch-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/>
+                                <path d="M7 2v20"/>
+                                <path d="M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+                            </svg>
+                        </div>
+                        <div class="macro-info">
+                            <span class="macro-label">Lunch</span>
+                            <span class="macro-value" id="lunch-cal">0 cal</span>
+                        </div>
+                        <div class="macro-bar">
+                            <div class="macro-bar-fill lunch-fill" id="lunch-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="card card-macro" id="card-dinner">
+                        <div class="macro-icon dinner-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2C6.48 2 2 6 2 10c0 2 2 4 4 4h12c2 0 4-2 4-4 0-4-4.48-8-10-8z"/>
+                                <path d="M2 14h20v2a4 4 0 01-4 4H6a4 4 0 01-4-4v-2z"/>
+                                <line x1="12" y1="20" x2="12" y2="22"/>
+                                <line x1="8" y1="22" x2="16" y2="22"/>
+                            </svg>
+                        </div>
+                        <div class="macro-info">
+                            <span class="macro-label">Dinner</span>
+                            <span class="macro-value" id="dinner-cal">0 cal</span>
+                        </div>
+                        <div class="macro-bar">
+                            <div class="macro-bar-fill dinner-fill" id="dinner-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="card card-macro" id="card-snacks">
+                        <div class="macro-icon snack-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a7 7 0 017 7c0 3-2 5.5-4 7l-3 3.5L9 16c-2-1.5-4-4-4-7a7 7 0 017-7z"/>
+                                <circle cx="12" cy="9" r="2"/>
+                            </svg>
+                        </div>
+                        <div class="macro-info">
+                            <span class="macro-label">Snacks</span>
+                            <span class="macro-value" id="snacks-cal">0 cal</span>
+                        </div>
+                        <div class="macro-bar">
+                            <div class="macro-bar-fill snack-fill" id="snacks-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Meal Button -->
+            <button class="btn-add-meal" id="btn-add-meal" aria-label="Add meal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                <span>Add Meal</span>
+            </button>
+
+            <!-- Meal Log -->
+            <section class="meal-log" id="meal-log">
+                <h2 class="section-title">Today's Meals</h2>
+                <div class="meal-list" id="meal-list">
+                    <!-- Meals rendered by JS -->
+                </div>
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/>
+                            <path d="M7 2v20"/>
+                            <path d="M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+                        </svg>
+                    </div>
+                    <p class="empty-text">No meals logged yet</p>
+                    <p class="empty-subtext">Tap the button above to add your first meal</p>
+                </div>
+            </section>
+
+            <!-- Weekly Overview -->
+            <section class="weekly-overview" id="weekly-overview">
+                <h2 class="section-title">7-Day Overview</h2>
+                <div class="chart-container" id="chart-container">
+                    <!-- Bars rendered by JS -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Add Meal Modal -->
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal" id="modal-add-meal" role="dialog" aria-labelledby="modal-title">
+                <div class="modal-header">
+                    <h2 id="modal-title" class="modal-title">Add Meal</h2>
+                    <button class="btn-close-modal" id="btn-close-modal" aria-label="Close">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                <form id="meal-form" class="meal-form" autocomplete="off">
+                    <div class="form-group">
+                        <label for="meal-name" class="form-label">Food Name</label>
+                        <input type="text" id="meal-name" class="form-input" placeholder="e.g. Grilled Chicken Salad" required maxlength="60">
+                    </div>
+                    <div class="form-group">
+                        <label for="meal-calories" class="form-label">Calories</label>
+                        <input type="number" id="meal-calories" class="form-input" placeholder="e.g. 350" required min="1" max="10000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Meal Type</label>
+                        <div class="meal-type-grid" id="meal-type-grid">
+                            <label class="meal-type-option">
+                                <input type="radio" name="meal-type" value="breakfast" checked>
+                                <span class="meal-type-chip breakfast-chip">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg>
+                                    Breakfast
+                                </span>
+                            </label>
+                            <label class="meal-type-option">
+                                <input type="radio" name="meal-type" value="lunch">
+                                <span class="meal-type-chip lunch-chip">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/></svg>
+                                    Lunch
+                                </span>
+                            </label>
+                            <label class="meal-type-option">
+                                <input type="radio" name="meal-type" value="dinner">
+                                <span class="meal-type-chip dinner-chip">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6 2 10c0 2 2 4 4 4h12c2 0 4-2 4-4 0-4-4.48-8-10-8z"/></svg>
+                                    Dinner
+                                </span>
+                            </label>
+                            <label class="meal-type-option">
+                                <input type="radio" name="meal-type" value="snacks">
+                                <span class="meal-type-chip snack-chip">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 017 7c0 3-2 5.5-4 7l-3 3.5L9 16c-2-1.5-4-4-4-7a7 7 0 017-7z"/></svg>
+                                    Snacks
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit" id="btn-submit-meal">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Add Meal
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal-overlay" id="settings-overlay">
+            <div class="modal" id="modal-settings" role="dialog" aria-labelledby="settings-title">
+                <div class="modal-header">
+                    <h2 id="settings-title" class="modal-title">Settings</h2>
+                    <button class="btn-close-modal" id="btn-close-settings" aria-label="Close">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                <form id="settings-form" class="meal-form">
+                    <div class="form-group">
+                        <label for="calorie-goal" class="form-label">Daily Calorie Goal</label>
+                        <input type="number" id="calorie-goal" class="form-input" placeholder="e.g. 2000" required min="500" max="10000" value="2000">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-name" class="form-label">Your Name (optional)</label>
+                        <input type="text" id="user-name" class="form-input" placeholder="e.g. Alex" maxlength="30">
+                    </div>
+                    <button type="submit" class="btn-submit btn-save">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Save Settings
+                    </button>
+                    <button type="button" class="btn-danger" id="btn-clear-data">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                        </svg>
+                        Clear All Data
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast Container -->
+        <div class="toast-container" id="toast-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
